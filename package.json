@@ -1,60 +1,67 @@
 {
-  "name" : "spiffy-cactus",
-  "version" : "1.0.0",
-  "author" : "Red Hat, Inc.",
-  "license" : "Apache-2.0",
-  "scripts" : {
-    "test" : "tape test/*.js | tap-spec",
-    "test:integration" : "tape test/integration/*.js | tap-spec",
-    "test:integration:undeploy" : "nodeshift undeploy",
-    "lint" : "eslint .",
-    "lint:fix" : "eslint . --fix",
-    "coverage" : "nyc npm test",
-    "coveralls" : "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "ci" : "npm run lint && npm run coveralls",
-    "release" : "standard-version -a",
-    "openshift" : "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14:latest",
-    "postinstall" : "license-reporter report -s && license-reporter save -s --xml licenses.xml",
-    "start" : "node ."
+  "name": "spiffy-cactus",
+  "version": "1.0.0",
+  "author": "Red Hat, Inc.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "tape test/*.js | tap-spec",
+    "test:integration": "tape test/integration/*.js | tap-spec",
+    "test:integration:undeploy": "nodeshift undeploy",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "coverage": "nyc npm test",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "ci": "npm run lint && npm run coveralls",
+    "release": "standard-version -a",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14",
+    "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
+    "start": "node ."
   },
-  "main" : "./bin/www",
-  "standard-version" : {
-    "scripts" : {
-      "postbump" : "npm run postinstall && node release.js",
-      "precommit" : "git add .openshiftio/application.yaml licenses/"
+  "main": "./bin/www",
+  "standard-version": {
+    "scripts": {
+      "postbump": "npm run postinstall && node release.js",
+      "precommit": "git add .openshiftio/application.yaml licenses/"
     }
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "git://github.com/nodeshift-starters/nodejs-rest-http-redhat.git"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nodeshift-starters/nodejs-rest-http-redhat.git"
   },
-  "files" : [ "package.json", "app.js", "public", "bin", "LICENSE", "licenses" ],
-  "bugs" : {
-    "url" : "https://github.com/nodeshift-starters/nodejs-rest-http-redhat/issues"
+  "files": [
+    "package.json",
+    "app.js",
+    "public",
+    "bin",
+    "LICENSE",
+    "licenses"
+  ],
+  "bugs": {
+    "url": "https://github.com/nodeshift-starters/nodejs-rest-http-redhat/issues"
   },
-  "homepage" : "https://github.com/nodeshift-starters/nodejs-rest-http-redhat",
-  "devDependencies" : {
-    "coveralls" : "^3.1.0",
-    "eslint" : "^7.13.0",
-    "eslint-config-semistandard" : "^15.0.1",
-    "eslint-config-standard" : "^16.0.1",
-    "eslint-plugin-import" : "^2.22.1",
-    "eslint-plugin-node" : "^11.1.0",
-    "eslint-plugin-promise" : "^4.2.1",
-    "eslint-plugin-standard" : "^4.1.0",
-    "js-yaml" : "^3.13.1",
-    "nodeshift" : "~6.2.0",
-    "nyc" : "~14.1.1",
-    "rhoaster" : "^0.4.1",
-    "standard-version" : "^8.0.1",
-    "supertest" : "~4.0.2",
-    "tap-spec" : "~5.0.0",
-    "tape" : "~5.0.1"
+  "homepage": "https://github.com/nodeshift-starters/nodejs-rest-http-redhat",
+  "devDependencies": {
+    "coveralls": "^3.1.0",
+    "eslint": "^7.13.0",
+    "eslint-config-semistandard": "^15.0.1",
+    "eslint-config-standard": "^16.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.1.0",
+    "js-yaml": "^3.13.1",
+    "nodeshift": "~6.2.0",
+    "nyc": "~14.1.1",
+    "rhoaster": "^0.4.1",
+    "standard-version": "^8.0.1",
+    "supertest": "~4.0.2",
+    "tap-spec": "~5.0.0",
+    "tape": "~5.0.1"
   },
-  "dependencies" : {
-    "body-parser" : "~1.19.0",
-    "debug" : "^4.2.0",
-    "express" : "~4.17.1",
-    "license-reporter" : "~1.3.0"
+  "dependencies": {
+    "body-parser": "~1.19.0",
+    "debug": "^4.2.0",
+    "express": "~4.17.1",
+    "license-reporter": "~1.3.0"
   }
 }
