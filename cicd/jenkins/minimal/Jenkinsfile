@@ -1,0 +1,19 @@
+// Load the Ploigos Jenkins Library
+library identifier: 'ploigos-jenkins-library@v0.18.0',
+retriever: modernSCM([
+    $class: 'GitSCMSource',
+    remote: 'https://github.com/ky-rafaels/ploigos-jenkins-library.git'
+])
+
+// run the pipeline
+ploigosWorkflowMinimal(
+    stepRunnerConfigDir: 'cicd/jenkins/minimal/ploigos-step-runner-config/',
+
+    pgpKeysSecretName: 'pgp-keys-ploigos-workflow-ref-quarkus-mvn-jenkins-min-fruit',
+    workflowServiceAccountName: 'ploigos-workflow-ref-quarkus-mvn-jenkins-min-fruit',
+
+    workflowWorkerImageDefault: 'ploigos/ploigos-ci-agent-jenkins:v0.18.0',
+    workflowWorkerImagePackage: 'ploigos/ploigos-tool-maven:v0.18.0',
+    workflowWorkerImageContainerOperations: 'ploigos/ploigos-tool-containers:v0.18.0',
+    workflowWorkerImageDeploy: 'ploigos/ploigos-tool-argocd:v0.18.0'
+)

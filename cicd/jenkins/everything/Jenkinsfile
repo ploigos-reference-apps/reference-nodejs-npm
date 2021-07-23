@@ -1,0 +1,31 @@
+// Load the Ploigos Jenkins Library
+library identifier: 'ploigos-jenkins-library@v0.18.0',
+retriever: modernSCM([
+    $class: 'GitSCMSource',
+    remote: 'https://github.com/ky-rafaels/ploigos-jenkins-library'
+])
+
+// run the pipeline
+ploigosWorkflowEverything(
+    stepRunnerConfigDir: 'cicd/jenkins/everything/ploigos-step-runner-config/',
+
+    pgpKeysSecretName: 'ploigos-gpg-key',
+    workflowServiceAccountName: 'jenkins',
+
+    workflowWorkerImageDefault: 'quay.io/ploigos/ploigos-ci-agent-jenkins:v0.18.0',
+    workflowWorkerImageUnitTest: 'quay.io/ploigos/ploigos-tool-maven:v0.18.0',
+    workflowWorkerImagePackage: 'quay.io/ploigos/ploigos-tool-maven:v0.18.0',
+    workflowWorkerImageStaticCodeAnalysis: 'quay.io/ploigos/ploigos-tool-sonar:v0.18.0',
+    workflowWorkerImagePushArtifacts: 'quay.io/ploigos/ploigos-tool-maven:v0.18.0',
+    workflowWorkerImageContainerOperations: 'quay.io/ploigos/ploigos-tool-containers:v0.18.0',
+    workflowWorkerImageContainerImageStaticComplianceScan: 'quay.io/ploigos/ploigos-tool-openscap:v0.18.0',
+    workflowWorkerImageContainerImageStaticVulnerabilityScan: 'quay.io/ploigos/ploigos-tool-openscap:v0.18.0',
+    workflowWorkerImageDeploy: 'quay.io/ploigos/ploigos-tool-argocd:v0.18.0',
+    workflowWorkerImageValidateEnvironmentConfiguration: 'quay.io/ploigos/ploigos-tool-config-lint:v0.18.0',
+    workflowWorkerImageUAT: 'quay.io/ploigos/ploigos-tool-maven:v0.18.0',
+    workflowWorkerAutomatedGovernance: 'quay.io/ploigos/ploigos-tool-rekor:v0.18.0',
+
+    separatePlatformConfig: true,
+    stepRunnerLibSourceUrl: "git+https://github.com/ky-rafaels/ploigos-step-runner@main",
+    stepRunnerUpdateLibrary: true
+)

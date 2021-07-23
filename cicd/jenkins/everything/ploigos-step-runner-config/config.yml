@@ -1,0 +1,84 @@
+---
+step-runner-config:
+  config-decryptors:
+  - implementer: SOPS
+
+  global-defaults:
+    organization: platform
+    application-name: ref-quarkus-mvn-jenkins-eve
+    service-name: fruit
+
+  generate-metadata:
+  - implementer: Maven
+  - implementer: Git
+  - implementer: SemanticVersion
+
+  tag-source:
+  - implementer: Git
+
+  unit-test:
+  - implementer: Maven
+
+  package:
+  - implementer: Maven
+
+  static-code-analysis:
+  - implementer: SonarQube
+
+  push-artifacts:
+  - implementer: Maven
+
+  create-container-image:
+  - implementer: Buildah
+
+  push-container-image:
+  - implementer: Skopeo
+
+  sign-container-image:
+  - implementer: PodmanSign
+
+  container-image-static-compliance-scan:
+  # sample scans using DataStream file (preferred)
+  - name: OpenSCAP - Compliance - Example Compliance Profile for UBI8 Container Images [Based on xccdf_org.ssgproject.content_profile_standard]
+    implementer: OpenSCAP
+    config:
+      oscap-input-definitions-uri: https://atopathways.redhatgov.io/compliance-as-code/scap/ssg-rhel8-ds.xml
+      oscap-tailoring-uri: https://raw.githubusercontent.com/ploigos/ploigos-example-oscap-content/main/xccdf_com.redhat.ploigos_profile_example_ubi8-tailoring-xccdf.xml
+      oscap-profile: xccdf_com.redhat.ploigos_profile_example_ubi8
+
+  container-image-static-vulnerability-scan:
+  # sample vulnerability scan using XCCDF file (preferred)
+  - name: OpenSCAP - Vulnerability - DataStream
+    implementer: OpenSCAP
+    config:
+      oscap-input-definitions-uri: https://www.redhat.com/security/data/metrics/ds/v2/RHEL8/rhel-8.ds.xml.bz2
+
+  deploy:
+  - implementer: ArgoCD
+    config:
+      deployment-config-helm-chart-path: charts/reference-quarkus-mvn-deploy
+      deployment-config-repo: http://gitea:3000/platform/reference-quarkus-mvn-cloud-resources_jenkins_workflow-everything.git
+      deployment-config-helm-chart-values-file-image-tag-yq-path: 'image.tag'
+      environment-config:
+        DEV:
+          deployment-config-helm-chart-environment-values-file: values-DEV.yaml
+        TEST:
+          deployment-config-helm-chart-environment-values-file: values-TEST.yaml
+        PROD:
+          deployment-config-helm-chart-environment-values-file: values-PROD.yaml
+      force-push-tags: true
+
+  validate-environment-configuration:
+  - implementer: ConfiglintFromArgocd
+  - implementer: Configlint
+    config:
+      rules: cicd/jenkins/everything/ValidateEnv/
+
+  uat:
+  - implementer: MavenSeleniumCucumber
+
+  report:
+  - implementer: ResultArtifactsArchive
+
+  generate-evidence:
+  - implementer: GenerateEvidence
