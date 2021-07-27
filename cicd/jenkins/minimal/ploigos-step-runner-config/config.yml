@@ -5,23 +5,10 @@ step-runner-config:
 
   global-defaults:
     organization: ploigos-ref
-    application-name: ref-quarkus-mvn-jenkins-min
-    service-name: fruit
-
-    maven-servers:
-      internal-mirror:
-        id: internal-server
-        username: tssc
-    maven-mirrors:
-      internal-mirror:
-        id: internal-mirror
-        url: http://artifactory.apps.tssc.rht-set.com/artifactory/release/
-        mirror-of: '*'
-    container-registries:
-        registry.redhat.io:
-            username: 6340056|tssc-integration-infra
-        quay-quay-enterprise.apps.tssc.rht-set.com:
-            username: ploigos-ref+workflow_reference_quarkus_mvn
+    application-name: ref-javascript-npm-jenkins-min
+    service-name: ""
+    author: ploigos
+    license: MIT
 
   generate-metadata:
   - implementer: Maven
@@ -29,7 +16,7 @@ step-runner-config:
   - implementer: SemanticVersion
 
   unit-test:
-  - implementer: Maven
+  - implementer: Npm
 
   package:
   - implementer: Maven

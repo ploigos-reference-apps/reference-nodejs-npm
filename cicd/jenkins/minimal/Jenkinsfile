@@ -2,7 +2,7 @@
 library identifier: 'ploigos-jenkins-library@v0.18.0',
 retriever: modernSCM([
     $class: 'GitSCMSource',
-    remote: 'https://github.com/ky-rafaels/ploigos-jenkins-library.git'
+    remote: 'https://github.com/ploigos/ploigos-jenkins-library.git'
 ])
 
 // run the pipeline
@@ -16,4 +16,7 @@ ploigosWorkflowMinimal(
     workflowWorkerImagePackage: 'ploigos/ploigos-tool-maven:v0.18.0',
     workflowWorkerImageContainerOperations: 'ploigos/ploigos-tool-containers:v0.18.0',
     workflowWorkerImageDeploy: 'ploigos/ploigos-tool-argocd:v0.18.0'
+
+    stepRunnerUpdateLibrary: true,
+    stepRunnerLibSourceUrl: "git+https://github.com/ploigos/ploigos-step-runner.git@feature/javascript-npm"
 )
