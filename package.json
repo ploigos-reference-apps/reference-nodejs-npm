@@ -6,16 +6,14 @@
   "scripts": {
     "test": "tape test/*.js | tap-spec",
     "test:integration": "tape test/integration/*.js | tap-spec",
-    "test:integration:undeploy": "nodeshift undeploy",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "ci": "npm run lint && npm run coveralls",
     "release": "standard-version -a",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-14",
-    "postinstall": "license-reporter report -s && license-reporter save -s --xml licenses.xml",
-    "start": "node ."
+    "start": "npm run open",
+    "open": "concurrently \"http-server -a localhost -p 3000\" \"open http://localhost:3000\""
   },
   "main": "./bin/www",
   "standard-version": {
@@ -56,7 +54,7 @@
     "standard-version": "^8.0.1",
     "supertest": "~4.0.2",
     "tap-spec": "~5.0.0",
-    "tape": "~5.0.1"
+    "tape": "^5.0.1"
   },
   "dependencies": {
     "body-parser": "~1.19.0",
