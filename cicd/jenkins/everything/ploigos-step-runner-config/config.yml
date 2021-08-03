@@ -17,7 +17,7 @@ step-runner-config:
   - implementer: Git
 
   unit-test:
-  - implementer: Maven
+  - implementer: Npm 
 
   package:
   - implementer: Maven

@@ -4,8 +4,8 @@
   "author": "Red Hat, Inc.",
   "license": "Apache-2.0",
   "scripts": {
-    "test": "tape test/*.js | tap-spec",
-    "test:integration": "tape test/integration/*.js | tap-spec",
+    "test": "npm run dependencies && tape test/*.js | tap-spec",
+    "dependencies": "npm install --save-dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "coverage": "nyc npm test",
@@ -48,7 +48,6 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.1.0",
     "js-yaml": "^3.13.1",
-    "nodeshift": "~6.2.0",
     "nyc": "~14.1.1",
     "rhoaster": "^0.4.1",
     "standard-version": "^8.0.1",

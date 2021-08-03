@@ -1,0 +1,19 @@
+step-runner-results:
+    unit-test:
+        Maven:
+            artifacts: []
+            evidence: []
+            message: 'Given maven pom file (pom-file) does not exist: pom.xml'
+            sub-step-implementer-name: Maven
+            success: false
+        Npm:
+            artifacts:
+            -   description: Standard out and standard error from 'npm test'.
+                name: npm-output
+                value: /home/krafaels/projects/ploigos/reference-nodejs-npm/step-runner-working/unit-test/npm_test_output.txt
+            evidence: []
+            message: "Unit test failures. See 'npm-output' and 'surefire-reports'\
+                \ report artifacts for details: \n\n  RAN: /usr/bin/npm run test\n\
+                \n  STDOUT:\n\n\n  STDERR:\n"
+            sub-step-implementer-name: Npm
+            success: false
