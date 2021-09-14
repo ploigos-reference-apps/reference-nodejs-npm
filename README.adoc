@@ -1,20 +1,25 @@
-= REST API Level 0 - Node.js Example Application
+= Ploigos Reference Application using npm & Node.js
 
-IMPORTANT: This example application requires Node.js 8.x or greater and `npm` 5 or greater.
-
-
-
-== Running the Example Application Locally
+== Running the Application Locally
 
 To run this example application on your local host:
 
 [source,bash,options="nowrap",subs="attributes+"]
 ----
-$ unzip spiffy-cactus.zip
-
-$ cd spiffy-cactus
-
 $ npm install && npm start
+----
+
+== Testing the Container Image Build Locally
+
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ npm install
+
+$ buildah bud -t reference-nodejs-npm .
+
+$ podman run -p 8080:8080 --rm --name=reference-nodejs-npm reference-nodejs-npm
+
+$ podman stop reference-nodejs-npm # run this in another terminal to stop the app 
 ----
 
 == Interacting with the Example Application Locally
@@ -41,22 +46,4 @@ NOTE: To stop your running example application in a Linux or macOS terminal, use
 . Make your change (e.g. edit `public/index.html`).
 . Restart your example application.
 . Verify the change took effect.
-
-
-== Running the Example Application on a Single-node OpenShift Cluster
-If you have a single-node OpenShift cluster, such as Minishift or Red Hat Container Development Kit, installed and running, you can also deploy your example application there. A single-node OpenShift cluster provides you with access to a cloud environment that is similar to a production environment.
-
-To deploy your example application to a running single-node OpenShift cluster:
-[source,bash,options="nowrap",subs="attributes+"]
-----
-$ oc login -u developer -p developer
-
-$ oc new-project MY_PROJECT_NAME
-
-$ npm install && npm run openshift
-----
-
-== More Information
-You can learn more about this example application and rest of the Node.js runtime in the link:https://access.redhat.com/documentation/en-us/red_hat_build_of_node.js/[Node.js Runtime Guide].
-
 
