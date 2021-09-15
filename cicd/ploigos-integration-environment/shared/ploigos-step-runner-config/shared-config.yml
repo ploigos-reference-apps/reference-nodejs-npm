@@ -5,56 +5,38 @@ step-runner-config:
 
   global-defaults:
     organization: ploigos-ref
-    service-name: reference-nodejs-npm
+    service-name: fruit
 
+    maven-servers:
+      nexus.apps.tssc.rht.set.com:
+        id: nexus.apps.tssc.rht.set.com
+        username: sa-ploigos-ref-apps
+    maven-mirrors:
+      nexus.apps.tssc.rht.set.com:
+        id: nexus.apps.tssc.rht.set.com
+        url: https://nexus.apps.tssc.rht-set.com/repository/maven-public/
+        mirror-of: '*'
     container-registries:
         registry.redhat.io:
             username: 6340056|tssc-integration-infra
         registry-internal-nexus.apps.tssc.rht-set.com:
             username: sa-ploigos-ref-apps
 
-
   generate-metadata:
-  - implementer: Npm
+  - implementer: Maven
   - implementer: Git
   - implementer: SemanticVersion
 
-  tag-source:
-    - implementer: Git
-    config:
-      git-username: sa-ploigos-ref-apps
-
   package:
-  - implementer: NpmPackage
-
-  static-code-analysis:
-  - implementer: SonarQube
-    config:
-      url: https://sonarqube-sonarqube.apps.tssc.rht-set.com/
-      username: reference-apps-sa
-
-  unit-test:
-  - implementer: NpmTest
+  - implementer: MavenPackage
 
   create-container-image:
   - implementer: Buildah
 
   push-container-image:
   - implementer: Skopeo
-
-  sign-container-image:
-  - implementer: PodmanSign
     config:
-      container-image-signature-destination-url: https://nexus.apps.tssc.rht-set.com/repository/container-image-signatures/
-      container-image-signature-destination-username: sa-ploigos-ref-apps
-
-  container-image-static-compliance-scan:
-  - name: OpenSCAP - Compliance - SSG RHEL8
-    implementer: OpenSCAP
-    config:
-      oscap-input-definitions-uri: https://atopathways.redhatgov.io/compliance-as-code/scap/ssg-rhel8-ds.xml
-      oscap-tailoring-uri: https://raw.githubusercontent.com/ploigos/ploigos-example-oscap-content/main/xccdf_com.ploigos_profile_standard_compliance_ploigos_reference_apps-tailoring.xml
-      oscap-profile: xccdf_com.ploigos_profile_standard_compliance_ploigos_reference_apps
+      destination-url: registry-internal-nexus.apps.tssc.rht-set.com
 
   deploy:
   - implementer: ArgoCD
@@ -62,7 +44,7 @@ step-runner-config:
       argocd-api: argocd-server-argocd.apps.tssc.rht-set.com
       argocd-username: admin
       argocd-skip-tls: True
-      deployment-config-helm-chart-path: charts/reference-quarkus-npm-deploy
+      deployment-config-helm-chart-path: charts/reference-quarkus-mvn-deploy
       deployment-config-helm-chart-values-file-image-tag-yq-path: 'image.tag'
       git-username: sa-ploigos-ref-apps
       git-email: 'napsspo+tssc@redhat.com'
@@ -77,3 +59,6 @@ step-runner-config:
 
   report:
   - implementer: ResultArtifactsArchive
+    config:
+      results-archive-destination-url: https://nexus.apps.tssc.rht-set.com/repository/release-engineering-workflow-result-artifacts-archives/
+      results-archive-destination-username: sa-ploigos-ref-apps
