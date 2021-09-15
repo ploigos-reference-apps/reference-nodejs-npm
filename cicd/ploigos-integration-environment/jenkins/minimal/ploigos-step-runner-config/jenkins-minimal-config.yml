@@ -6,4 +6,4 @@ step-runner-config:
   deploy:
   - implementer: ArgoCD
     config:
-      deployment-config-repo: http://gitea.tssc.rht-set.com/ploigos-reference-applications/reference-quarkus-mvn-cloud-resources_jenkins_workflow-minimal.git
+      deployment-config-repo: http://gitea.tssc.rht-set.com/ploigos-reference-applications/reference-nodejs-npm-cloud-resources_jenkins_workflow-minimal.git
