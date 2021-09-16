@@ -35,7 +35,7 @@ step-runner-config:
       argocd-api: argocd-server-argocd.apps.tssc.rht-set.com
       argocd-username: admin
       argocd-skip-tls: True
-      deployment-config-helm-chart-path: charts/reference-quarkus-mvn-deploy
+      deployment-config-helm-chart-path: charts/reference-nodejs-npm-deploy
       deployment-config-helm-chart-values-file-image-tag-yq-path: 'image.tag'
       git-username: sa-ploigos-ref-apps
       git-email: 'napsspo+tssc@redhat.com'
