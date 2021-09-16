@@ -5,7 +5,7 @@ step-runner-config:
 
   global-defaults:
     organization: ploigos-ref
-    service-name: fruit
+    service-name: hello
 
     container-registries:
         registry.redhat.io:
