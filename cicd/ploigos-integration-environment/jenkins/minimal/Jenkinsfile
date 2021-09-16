@@ -16,5 +16,7 @@ ploigosWorkflowMinimal(
     workflowWorkerImageAgent: 'ploigos/ploigos-ci-agent-jenkins:v0.20.0',
     workflowWorkerImagePackage: 'ploigos/ploigos-tool-maven:v0.20.0',
     workflowWorkerImageContainerOperations: 'ploigos/ploigos-tool-containers:v0.20.0',
-    workflowWorkerImageDeploy: 'ploigos/ploigos-tool-argocd:v0.20.0'
+    workflowWorkerImageDeploy: 'ploigos/ploigos-tool-argocd:v0.20.0',
+
+    verbose: 'true'
 )
