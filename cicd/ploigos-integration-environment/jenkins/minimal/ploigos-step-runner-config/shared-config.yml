@@ -40,6 +40,7 @@ step-runner-config:
       git-username: sa-ploigos-ref-apps
       git-email: 'napsspo+tssc@redhat.com'
       argocd-sync-timeout-seconds: 130
+      force-push-tags: True
     environment-config:
       DEV:
         deployment-config-helm-chart-environment-values-file: values-DEV.yaml
