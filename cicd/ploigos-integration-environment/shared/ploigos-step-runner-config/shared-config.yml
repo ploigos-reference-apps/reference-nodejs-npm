@@ -7,15 +7,6 @@ step-runner-config:
     organization: ploigos-ref
     service-name: fruit
 
-    maven-servers:
-      nexus.apps.tssc.rht.set.com:
-        id: nexus.apps.tssc.rht.set.com
-        username: sa-ploigos-ref-apps
-    maven-mirrors:
-      nexus.apps.tssc.rht.set.com:
-        id: nexus.apps.tssc.rht.set.com
-        url: https://nexus.apps.tssc.rht-set.com/repository/maven-public/
-        mirror-of: '*'
     container-registries:
         registry.redhat.io:
             username: 6340056|tssc-integration-infra
@@ -23,12 +14,12 @@ step-runner-config:
             username: sa-ploigos-ref-apps
 
   generate-metadata:
-  - implementer: Maven
+  - implementer: Npm
   - implementer: Git
   - implementer: SemanticVersion
 
   package:
-  - implementer: MavenPackage
+  - implementer: NpmPackage
 
   create-container-image:
   - implementer: Buildah
