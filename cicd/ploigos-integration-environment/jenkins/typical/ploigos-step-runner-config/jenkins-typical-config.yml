@@ -1,7 +1,7 @@
 ---
 step-runner-config:
   global-defaults:
-    application-name: ref-nodejs-npm-jenkins-min
+    application-name: ref-nodejs-npm-jenkins-typ
 
   deploy:
   - implementer: ArgoCD
