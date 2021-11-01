@@ -23,6 +23,11 @@ step-runner-config:
       config:
         git-username: sa-ploigos-ref-apps
 
+  unit-test:
+    - implementer: NpmTest
+      config:
+        install-first: True
+
   package:
   - implementer: NpmPackage
 
