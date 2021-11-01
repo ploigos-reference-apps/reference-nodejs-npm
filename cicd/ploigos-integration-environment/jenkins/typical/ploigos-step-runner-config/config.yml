@@ -18,6 +18,11 @@ step-runner-config:
   - implementer: Git
   - implementer: SemanticVersion
 
+  tag-source:
+    - implementer: Git
+      config:
+        git-username: sa-ploigos-ref-apps
+
   package:
   - implementer: NpmPackage
 
