@@ -31,6 +31,12 @@ step-runner-config:
   package:
   - implementer: NpmPackage
 
+  static-code-analysis:
+    - implementer: SonarQube
+      config:
+        url: https://sonarqube-sonarqube.apps.tssc.rht-set.com/
+        username: reference-apps-sa
+
   create-container-image:
   - implementer: Buildah
 
