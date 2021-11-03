@@ -37,6 +37,12 @@ step-runner-config:
         url: https://sonarqube-sonarqube.apps.tssc.rht-set.com/
         username: reference-apps-sa
 
+  push-artifacts:
+  - implementer: NpmPushArtifacts
+    config:
+      npm-registry: https://nexus.apps.tssc.rht-set.com/repository/npm-internal/
+      npm-user: sa-ploigos-ref-apps
+
   create-container-image:
   - implementer: Buildah
 
