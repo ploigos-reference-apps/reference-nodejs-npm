@@ -1,5 +1,6 @@
 node_modules/
 tmp/
+cypress/videos/
 
 #System Files
 .DS_Store

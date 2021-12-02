@@ -79,6 +79,15 @@ step-runner-config:
       PROD:
         deployment-config-helm-chart-environment-values-file: values-PROD.yaml
 
+  uat:
+  - implementer: NpmXunitIntegrationTest
+    config:
+      npm-test-script: 'test:uat:cicd'
+      test-reports-dir: 'uat-results/'
+      target-host-env-var-name: CYPRESS_BASE_URL
+      npm-envs:
+        NO_COLOR: '1'
+
   report:
   - implementer: ResultArtifactsArchive
     config:

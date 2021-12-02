@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <licenseSummary>
-    <project>spiffy-cactus</project>
+    <project>reference-nodejs-npm</project>
     <version>1.0.0</version>
     <license>Apache-2.0</license>
     <dependencies>
