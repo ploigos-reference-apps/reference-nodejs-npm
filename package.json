@@ -42,7 +42,7 @@
   "homepage": "https://github.com/nodeshift-starters/nodejs-rest-http-redhat",
   "devDependencies": {
     "coveralls": "^3.1.0",
-    "eslint": "^7.13.0",
+    "eslint": "^7.32.0",
     "eslint-config-semistandard": "^15.0.1",
     "eslint-config-standard": "^16.0.1",
     "eslint-plugin-import": "^2.22.1",
@@ -50,7 +50,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.1.0",
     "js-yaml": "^3.13.1",
-    "jslint": "^0.12.1",
+    "node-jslint": "^0.1.1",
     "nodeshift": "~6.2.0",
     "nyc": "~14.1.1",
     "rhoaster": "^0.4.1",
