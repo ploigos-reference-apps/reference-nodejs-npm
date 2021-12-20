@@ -17,7 +17,7 @@ step-runner-config:
   - implementer: ArgoCD
     config:
       deployment-config-repo: http://gitea:3000/platform/reference-nodejs-npm-cloud-resources_workflow-typical.git
-      deployment-config-helm-chart-path: charts/reference-quarkus-mvn-deploy
+      deployment-config-helm-chart-path: charts/reference-app-deploy
       deployment-config-helm-chart-values-file-image-tag-yq-path: 'image.tag'
     environment-config:
       DEV:
