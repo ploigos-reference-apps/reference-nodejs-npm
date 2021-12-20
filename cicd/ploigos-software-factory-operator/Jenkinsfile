@@ -1,0 +1,33 @@
+// Load the Ploigos Jenkins Library
+library identifier: 'ploigos-jenkins-library@andy-npm',
+retriever: modernSCM([
+    $class: 'GitSCMSource',
+    remote: 'https://github.com/ploigos/ploigos-jenkins-library.git'
+])
+
+// run the pipeline
+ploigosWorkflowTypical(
+    stepRunnerConfigDir: 'cicd/ploigos-software-factory-operator/ploigos-step-runner-config/',
+
+    pgpKeysSecretName: 'ploigos-gpg-key',
+    workflowServiceAccountName: 'jenkins',
+
+    workflowWorkerImageDefault: 'ploigos/ploigos-base:v0.22.0',
+    workflowWorkerImageAgent: 'ploigos/ploigos-ci-agent-jenkins:v0.22.0',
+    workflowWorkerImageUnitTest: 'ploigos/ploigos-tool-javascript:v0.22.0',
+    workflowWorkerImagePackage: 'ploigos/ploigos-tool-javascript:v0.22.0',
+    workflowWorkerImageStaticCodeAnalysis: 'ploigos/ploigos-tool-sonar:v0.22.0',
+    workflowWorkerImagePushArtifacts: 'ploigos/ploigos-tool-javascript:v0.22.0',
+    workflowWorkerImageContainerOperations: 'ploigos/ploigos-tool-containers:v0.22.0',
+    workflowWorkerImageContainerImageStaticVulnerabilityScan: 'ploigos/ploigos-tool-openscap:v0.22.0',
+    workflowWorkerImageDeploy: 'ploigos/ploigos-tool-argocd:v0.22.0',
+    workflowWorkerImageUAT: 'ploigos/ploigos-tool-cypress:pr-88',
+
+    stepRunnerUpdateLibrary: 'true',
+    stepRunnerLibSourceUrl: 'git+https://github.com/ploigos/ploigos-step-runner.git@main',
+
+    verbose: 'true',
+
+    platformConfigConfigMapName: 'ploigos-platform-config-npm',
+    platformConfigSecretName: 'ploigos-platform-config-secrets'
+)
