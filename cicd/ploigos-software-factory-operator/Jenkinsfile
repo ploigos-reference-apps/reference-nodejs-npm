@@ -29,5 +29,5 @@ ploigosWorkflowTypical(
     verbose: 'true',
 
     platformConfigConfigMapName: 'ploigos-platform-config-npm',
-    platformConfigSecretName: 'ploigos-platform-config-secrets'
+    platformConfigSecretName: 'ploigos-platform-config-secrets-npm'
 )
